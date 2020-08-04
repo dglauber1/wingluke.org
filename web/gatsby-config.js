@@ -1,7 +1,12 @@
-require('dotenv').config()
+// Load variables from `.env` as soon as possible
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV || 'development'}`
+})
 const {
   api: { projectId, dataset }
 } = requireConfig('../studio/sanity.json')
+
+const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
   plugins: [
@@ -15,8 +20,8 @@ module.exports = {
         // To enable preview of drafts, copy .env-example into .env,
         // and add a token with read permissions
         token: process.env.SANITY_TOKEN,
-        watchMode: true,
-        overlayDrafts: true
+        watchMode: !isProd,
+        overlayDrafts: !isProd
       }
     }
   ]
@@ -29,7 +34,7 @@ module.exports = {
  * with directions to enter the info manually or in the environment.
  */
 
-function requireConfig (path) {
+function requireConfig(path) {
   try {
     return require(path)
   } catch (e) {
