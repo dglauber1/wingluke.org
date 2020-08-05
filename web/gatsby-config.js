@@ -23,19 +23,6 @@ module.exports = {
         watchMode: !isProd,
         overlayDrafts: !isProd
       }
-    },
-    {
-      resolve: 'gatsby-plugin-robots-txt',
-      options: {
-        env: {
-          development: {
-            policy: [{ userAgent: '*', disallow: ['/'] }]
-          },
-          production: {
-            policy: [{ userAgent: '*', allow: '/' }]
-          }
-        }
-      }
     }
   ]
 }
