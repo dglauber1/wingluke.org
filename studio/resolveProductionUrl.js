@@ -1,4 +1,4 @@
-const remoteURL = "https://wingluke-preview.herokuapp.com";
+const remoteURL = "https://wingluke-prototype1-preview.herokuapp.com";
 const localURL = "http://localhost:8000";
 const previewURL = window.location.hostname === "localhost" ? localURL : remoteURL;
 
